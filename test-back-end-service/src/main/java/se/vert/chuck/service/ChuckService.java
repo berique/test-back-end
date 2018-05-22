@@ -14,7 +14,7 @@ import java.io.IOException;
 @Service
 public class ChuckService {
 
-    private final static String BASE_URL = "https://api.chucknorris.io/jokes/random";
+    private final static String BASE_URL = "https://api.chucknorris.io/jokes/";
 
     private final ObjectMapper objectMapper = new ObjectMapper();
 
@@ -28,11 +28,15 @@ public class ChuckService {
     }
 
     public ChuckModel obtainRandom() {
-        return this.restTemplate.getForObject(BASE_URL, ChuckModel.class);
+        return this.restTemplate.getForObject(BASE_URL + "random", ChuckModel.class);
 
     }
 
     public ChuckModel obtainRandom(String category) {
-        return this.restTemplate.getForObject(BASE_URL + "?category={category}", ChuckModel.class, category);
+        return this.restTemplate.getForObject(BASE_URL + "random?category={category}", ChuckModel.class, category);
+    }
+
+    public String[] obtainCategories() {
+        return this.restTemplate.getForObject(BASE_URL + "categories", String[].class);
     }
 }

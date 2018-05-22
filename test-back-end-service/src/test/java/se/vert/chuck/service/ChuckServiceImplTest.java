@@ -44,4 +44,11 @@ public class ChuckServiceImplTest {
         assertThat(random.getIconURL().toString(), is("https://assets.chucknorris.host/img/avatar/chuck-norris.png"));
     }
 
+    @Test
+    public void obtainCategories() {
+        String[] categories = chuckService.obtainCategories();
+
+        assertThat(categories, is(notNullValue()));
+        assertThat(categories.length, is(16));
+    }
 }
